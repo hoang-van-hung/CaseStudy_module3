@@ -3,35 +3,33 @@
 
 namespace App\Http\Repositories;
 
-use App\Http\Repositories\RoleRepository;
+
 use App\Models\Role;
 use Illuminate\Testing\Fluent\Concerns\Has;
 
-class RoleRepository
+class RoleRepository extends Repository
 {
-    protected $roleRepo;
-
-    public function __construct(RoleRepository $roleRepository)
-    {
-        $this->roleRepo= $roleRepository;
-
-    }
 
     public function getAll()
     {
-        return $this->roleRepo->getAll();
+        return Role::all();
     }
 
-    public function findById($id)
+    public function getById($id)
     {
-        return $this->roleRepo->findById($id);
+        return Role::findOrFail($id);
     }
 
     public function store($request)
     {
         $role = new Role();
         $role->fill($request->all());
-        $this->roleRepo->store($role);
+        $role->store($role);
+    }
+
+    public function delete($id)
+    {
+        $role->delete($id);
     }
 
 }

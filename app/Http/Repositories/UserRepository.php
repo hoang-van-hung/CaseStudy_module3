@@ -6,6 +6,7 @@ namespace App\Http\Repositories;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserRepository extends Repository
 {
@@ -37,8 +38,10 @@ class UserRepository extends Repository
     {
         DB::beginTransaction();
         try {
+            Storage::disk('public')->delete($user->image);
             $user->roles()->detach();
             $user->delete();
+            DB::commit();
         }catch (\Exception $exception){
             $exception->getMessage();
             DB::rollBack();

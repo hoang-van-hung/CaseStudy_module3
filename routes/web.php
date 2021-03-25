@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,18 @@ Route::prefix('admin')->group(function () {
         Route::post('/{id}/edit', [UserController::class, 'update'])->name('users.edit');
         Route::get('/{id}/delete', [UserController::class, 'delete'])->name('users.delete');
     });
+
+    Route::prefix('products')->group(function () {
+        Route::get('/',[ProductController::class,'index'])->name('products.index');
+        Route::get('create',[ProductController::class,'create'])->name('products.create');
+        Route::post('create',[ProductController::class,'store'])->name('products.store');
+        Route::get('{id}/edit',[ProductController::class,'edit'])->name('products.edit');
+        Route::post('{id}/edit',[ProductController::class,'update'])->name('products.update');
+        Route::get('/{id}/delete',[ProductController::class,'delete'])->name('products.delete');
+    });
+
 });
 
+
+
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('auth.showFormRegister');
-Route::post('register', [AuthController::class, 'register'])->name('auth.register')->middleware('checkAge');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatUserRequest;
 use App\Http\Services\UserService;
 use App\Http\Services\GroupService;
+use App\Http\Services\RoleService;
 use App\Models\Group;
 use App\Models\Role;
 use App\Models\User;
@@ -16,10 +17,11 @@ class UserController extends Controller
     protected $groupService;
     protected $roleService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, GroupService $groupService,RoleService $roleService )
     {
         $this->userService = $userService;
-//        $this->groupService = $groupService;
+        $this->groupService = $groupService;
+        $this->roleService = $roleService;
     }
 
     function index()
@@ -35,10 +37,8 @@ class UserController extends Controller
         return view('admin.users.add', compact('groups', 'roles'));
     }
 
-    function store(CreatUserRequest $request) {
-        // them csdl
+    function store(Request $request) {
         $this->userService->store($request);
-        // quay tro lai tranh d/s user
         return redirect()->route('users.index');
     }
 

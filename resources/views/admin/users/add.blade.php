@@ -10,7 +10,7 @@
             Featured
         </div>
         <div class="card-body">
-            <form method="post" action="{{ route('users.store') }}">
+            <form method="post" action="{{ route('users.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Name</label>
@@ -59,6 +59,13 @@
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                     </div>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="image" class="form-control @error('image') border-danger  @enderror">
+                    @error('image')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

@@ -22,6 +22,7 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Group</th>
+                        <th>Image</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -32,6 +33,7 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Group</th>
+                        <th>Image</th>
                         <th></th>
                     </tr>
                     </tfoot>
@@ -47,6 +49,7 @@
                                 @endforeach
                             </td>
                             <td><a href="">{{  $user->group->name ?? '' }}</a></td>
+                            <td><img src="{{ asset('storage/' . $user->image) }}" width="150" alt=""></td>
                             <td>
                                 <a onclick="return confirm('Are you sure delete user: {{ $user->name }}')"
                                    class="btn btn-danger" href="{{ route('users.delete', $user->id) }}">Delete</a>

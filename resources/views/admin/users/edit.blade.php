@@ -8,7 +8,7 @@
             Featured
         </div>
         <div class="card-body">
-            <form method="post" action="{{ route('users.edit', $user->id) }}">
+            <form method="post" action="{{ route('users.edit', $user->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Name</label>
@@ -54,6 +54,10 @@
                             </div>
                         @endforeach
                     </div>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="image" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

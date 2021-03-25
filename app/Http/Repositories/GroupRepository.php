@@ -18,16 +18,19 @@ class GroupRepository extends Repository
         return Group::findOrFail($id);
     }
 
-    public function store()
+    public function store($group)
     {
         DB::beginTransaction();
         try {
-//            $user->save();
-//            $user->group()->sync($group);
+            $group->save();
 
         }catch (\Exception $exception) {
             DB::rollBack();
         }
+    }
+    public function delete($group)
+    {
+        $group->delete();
     }
 
 

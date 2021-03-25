@@ -34,5 +34,23 @@ class GroupService
         $this->groupRepo->store($request);
     }
 
+    public function edit()
+    {
+
+    }
+
+    public function update($id, $request)
+    {
+        $group = $this->groupRepo->findById($id);
+        $group->fill($request->all());
+        $this->groupRepo->store($group);
+    }
+
+    public function delete($id)
+    {
+        $group = $this->groupRepo->findById($id);
+        $this->groupRepo->delete($group);
+    }
+
 
 }

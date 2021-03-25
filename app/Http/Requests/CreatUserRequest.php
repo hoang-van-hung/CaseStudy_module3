@@ -25,8 +25,9 @@ class CreatUserRequest extends FormRequest
     {
         return [
             'name'=>'required|min:5',
-            'email'=>'required|email|unique:users, email',
+            'email'=>'required|email|unique:users.email',
             'password'=>'required|min:6',
+            'image_path'=>'nullable|max:2050|mimes:jpg,png,jpeg',
         ];
     }
     public function messages()
