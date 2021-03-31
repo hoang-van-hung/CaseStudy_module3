@@ -31,7 +31,7 @@ class ProductService extends BaseService
     {
         $product = new Product();
         $product->fill($request->all());
-        $path = $this->updateLoadFile($request, 'image', 'Products');
+        $path = $this->updateLoadFile($request, 'image', 'product_img');
         $product->img = $path;
         $this->productRepo->store($product);
 
@@ -41,7 +41,7 @@ class ProductService extends BaseService
     {
         $product = $this->productRepo->getById($id);
         $product->fill($request->all());
-        $path = $this->updateLoadFile($request, 'image', 'Products');
+        $path = $this->updateLoadFile($request, 'image', 'product_img');
         $product->img = $path;
         $this->productRepo->store($product);
     }

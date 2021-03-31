@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productSer->getAll();
-        return view('admin.product.list',compact('products'));
+        return view('admin.products.list',compact('products'));
     }
 
     public function getById($id)
@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = $this->categorySer->getAll();
-        return view('admin.product.create',compact('categories'));
+        return view('admin.products.create',compact('categories'));
     }
 
     public function store(Request $request)
@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         $product = $this->productSer->getById($id);
         $categories = $this->categorySer->getAll();
-        return view('admin.product.edit',compact('product', 'categories'));
+        return view('admin.products.edit',compact('product', 'categories'));
 
     }
 

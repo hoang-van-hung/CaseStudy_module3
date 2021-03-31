@@ -17,5 +17,7 @@
         "postcss": "^8.2.8",
         "tailwindcss": "^2.0.4"
     },
-    "dependencies": {}
+    "dependencies": {
+        "bootstrap-icons": "^1.4.0"
+    }
 }

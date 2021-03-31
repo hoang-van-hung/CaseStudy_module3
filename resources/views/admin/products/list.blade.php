@@ -3,9 +3,9 @@
     Danh sach san pham
 @endsection
 @section('content')
-    <h1 class="mt-4">Danh sach nguoi dung</h1>
+    <h2 class="mt-4">Danh sach san pham</h2>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item active"><a href="{{route('products.create')}}">Add Product</a></li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
@@ -49,12 +49,12 @@
                             <td>{{ $product->type }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->content }}</td>
-                            <td><img src="{{ asset('storage/' . $product->img) }}" width="150" alt=""></td>
+                            <td><img src="{{ asset('storage/' . $product->img) }}" width="100" alt=""></td>
                             <td>{{ $product->category_id }}</td>
                             <td>{{ $product->price }}</td>
 
                             <td>
-                                <a onclick="return confirm('Are you sure delete product : {{ $product->name }}')"
+                                <a onclick="return confirm('Are you sure delete products : {{ $product->name }}')"
                                    class="btn btn-danger" href="{{ route('products.delete', $product->id) }}">Delete</a>
                                 <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
                             </td>

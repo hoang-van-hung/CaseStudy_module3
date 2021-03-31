@@ -5,6 +5,8 @@ namespace App\Http\Repositories;
 
 
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductRepository
 {
@@ -25,7 +27,17 @@ class ProductRepository
 
     function delete($product)
     {
-        $product->delete();
+
+        DB::beginTransaction();
+        try {
+            Storage::disk('public')->delete($product->img);
+            $product->delete();
+            DB::commit();
+        }catch (\Exception $exception){
+            $exception->getMessage();
+            DB::rollBack();
+
+        }
     }
 
 }
